@@ -1,21 +1,39 @@
-<!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="{{ url('/') }}">{{Voyager::setting('admin_title')}}</a>
-            </div>
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-                    
-                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
 
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
@@ -49,20 +67,14 @@
                             </li>
                         @endif
                     </ul>
-                        @if (Auth::guest())
-
-                        @else
-                         @if (Auth::user()->role_id==2)
-                         sii
-
-                            @else
-
-                            @endif
-                        @endif
-                    {{ menu('main_menu', 'menus.main') }}
                 </div>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+        </nav>
+
+        @yield('content')
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>
